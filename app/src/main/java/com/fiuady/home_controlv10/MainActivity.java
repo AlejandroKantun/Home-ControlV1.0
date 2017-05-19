@@ -72,35 +72,50 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     final int pos = getAdapterPosition();
-                    getDevicetoConnect(device_name);
-                    connectdevice();
+                    if (device_name.length()>0)
+                    {
+                        getDevicetoConnect(device_name);
+                        connectdevice();
+                    }
+
+
+                    if (pos == 5)
+                    {
+                        Intent i = new Intent(MainActivity.this, bt_set.class);
+                        startActivityForResult(i,2);
+                    }
 
                 }
             });
         }
 
         public void bindplaces(int a) {
-            if (a == 0) {
+            if (a == 1) {
                 image_room.setImageResource(R.drawable.living);
                 txt_Room.setText("Living Room");
-            } else if (a== 1) {
+            } else if (a== 2) {
                 image_room.setImageResource(R.drawable.kitchen);
                 txt_Room.setText("Kitchen");
-            } else if (a == 2) {
+            } else if (a == 3) {
                 image_room.setImageResource(R.drawable.room1);
                 txt_Room.setText("Room 1");
-            } else if (a == 3) {
+            } else if (a == 4) {
                 image_room.setImageResource(R.drawable.room2);
                 txt_Room.setText("Room 2");
             }
-            else if (a ==4)
+            else if (a ==5)
             {
                 image_room.setImageResource(R.drawable.room3);
                 txt_Room.setText("Room 3");
             }
-            else {
+            else if(a== 6){
                 image_room.setImageResource(R.drawable.pool);
                 txt_Room.setText("Swimming Pool");
+            }
+            else
+            {
+                image_room.setImageResource(R.drawable.puertas);
+                txt_Room.setText("Puertas");
             }
         }
     }
@@ -135,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     private final List<Integer> Aux_places = new ArrayList<Integer>();
     private ImageButton Img_btn_BT, Img_btn_Account_settings;
 
-    private String device_name;
+    private String device_name="";
     private BluetoothDevice device;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final UUID SERIAL_PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
@@ -173,6 +188,7 @@ private BluetoothAdapter btAdapter;
         Aux_places.add(3);
         Aux_places.add(4);
         Aux_places.add(5);
+        Aux_places.add(6);
         placesAdapter = new PlacesAdapter(Aux_places);
         PlacesRV.setAdapter(placesAdapter);
 
@@ -206,11 +222,14 @@ private BluetoothAdapter btAdapter;
                 //appendStateText("[Info] Se encontró 1 dispositivo.");
                 for (BluetoothDevice device_a: pairedDevices)
                 {
-                    if (name.equals(device_a.getName().toString()))
-                    {
-                        device = device_a;
-                        aux= true;
+                    if (name.length()>0){
+                        if (name.equals(device_a.getName().toString()))
+                        {
+                            device = device_a;
+                            aux= true;
+                        }
                     }
+
                 }
             } else {
                 //appendStateText("[Info] Se encontraron " + pairedDevices.size() + " dispositivos.");

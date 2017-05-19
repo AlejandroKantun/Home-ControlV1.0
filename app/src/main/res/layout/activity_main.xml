@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="欢迎: "
+                android:text="Bienvenido: "
                 android:textSize="20sp"
                 android:id="@+id/tag_welcome"/>
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="20sp"
                 android:layout_toRightOf="@id/tag_welcome"
-                android:text="C ñora su hijo"
+                android:text=" Usuario"
                 android:id="@+id/Txt_NameUser"/>
 
             <ImageButton
