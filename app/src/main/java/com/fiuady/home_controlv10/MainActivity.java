@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
                     if (pos == 5)
                     {
-                        Intent i = new Intent(MainActivity.this, bt_set.class);
-                        startActivityForResult(i,2);
+                        Intent i = new Intent(MainActivity.this, room1.class);
+                        startActivity(i);
                     }
 
                 }
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     private PlacesAdapter placesAdapter;
 
     private final List<Integer> Aux_places = new ArrayList<Integer>();
-    private ImageButton Img_btn_BT, Img_btn_Account_settings;
+    private ImageButton Img_btn_BT, Img_btn_Account_settings,Img_btn_Alarm, Img_btn_door;
 
     private String device_name="";
     private BluetoothDevice device;
@@ -174,6 +174,15 @@ private BluetoothAdapter btAdapter;
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         Img_btn_BT = (ImageButton)findViewById(R.id.ImgBtn_BTSetting);
         Img_btn_Account_settings = (ImageButton)findViewById(R.id.ImgBtn_AccountSettings);
+        Img_btn_Alarm = (ImageButton)findViewById(R.id.ImgBtn_Alarm);
+        Img_btn_Alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, WindowWatcherActivity.class);
+                startActivity(i);
+
+            }
+        });
         PlacesRV=(RecyclerView)findViewById(R.id.RV_places);
         int display_mode = getResources().getConfiguration().orientation;
         if (display_mode == Configuration.ORIENTATION_PORTRAIT) {
