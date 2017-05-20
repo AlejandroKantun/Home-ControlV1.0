@@ -136,7 +136,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(MainActivity.this, room1.class);
                         startActivity(i);
                     }
-
+                    if (pos == 6)
+                    {
+                        Intent i = new Intent(MainActivity.this, Terrace.class);
+                        startActivity(i);
+                    }
                 }
             });
         }

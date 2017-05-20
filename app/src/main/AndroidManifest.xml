@@ -27,8 +27,10 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".bt_set" />
-        <activity android:name=".room1"/>
-        <activity android:name=".DoorsActivity"/>
+        <activity android:name=".room1" />
+        <activity android:name=".DoorsActivity" />
+        <activity android:name=".WindowWatcherActivity" />
+        <activity android:name=".Terrace"></activity>
     </application>
 
 </manifest>

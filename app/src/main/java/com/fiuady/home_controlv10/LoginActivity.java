@@ -5,6 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,11 +72,46 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
     private  Account account;
 
+
+    ImageView iv1;
+    AnimationDrawable Anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
+        iv1 = (ImageView)findViewById(R.id.ImV_Animation);
+        try {
+            BitmapDrawable frame1 = (BitmapDrawable) getResources().getDrawable(
+                    R.drawable.homecontrol1);
+            BitmapDrawable frame2 = (BitmapDrawable) getResources().getDrawable(
+                    R.drawable.homecontrol2);
+            BitmapDrawable frame3 = (BitmapDrawable) getResources().getDrawable(
+                    R.drawable.homecontrol3);
+            BitmapDrawable frame4 = (BitmapDrawable) getResources().getDrawable(
+                    R.drawable.homecontrol);
+            Anim = new AnimationDrawable();
+            Anim.addFrame(frame1, 300);
+            Anim.addFrame(frame2, 300);
+            Anim.addFrame(frame3, 300);
+            Anim.addFrame(frame4,300);
+            Anim.setOneShot(false);
+            iv1.setBackgroundDrawable(Anim);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+
+                public void run() {
+
+                    Anim.start();
+
+                }
+            }, 300);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
         mPasswordView = (EditText) findViewById(R.id.password);
