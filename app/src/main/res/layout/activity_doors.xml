@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.fiuady.home_controlv10.DoorsActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/appbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Control de apertura de puertas"
+                android:textSize="20sp"
+                android:id="@+id/tag_doorTitle"/>
+
+
+            <ImageButton
+                android:id="@+id/ImgBtn_AccountSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:src="@drawable/acst"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                />
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+
+        android:id="@+id/txt_frontdoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puerta principal "
+        android:layout_below="@id/appbar"
+        android:textSize="25sp"
+        android:padding="@dimen/activity_vertical_margin"
+        android:textStyle="normal"
+
+        />
+
+    <Switch
+        android:id="@+id/frontdoor_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin"
+        android:layout_alignBaseline="@+id/txt_frontdoor"
+        android:layout_alignBottom="@+id/txt_frontdoor"
+        android:layout_alignParentEnd="true" />
+    <TextView
+
+        android:id="@+id/txt_garage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puerta garage     "
+        android:layout_below="@id/txt_frontdoor"
+        android:textSize="25sp"
+        android:padding="@dimen/activity_vertical_margin"
+        android:textStyle="normal"
+        />
+
+    <Switch
+        android:id="@+id/garage_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/txt_frontdoor"
+        android:layout_below="@id/txt_frontdoor"
+        android:padding="@dimen/activity_vertical_margin"
+        android:layout_alignBottom="@+id/txt_garage"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

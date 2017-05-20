@@ -79,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
+                    if(pos==0)
+                    {
+                        Intent i = new Intent(MainActivity.this, DoorsActivity.class);
+                        startActivityForResult(i, 0);
+                    }
+
                     if (pos == 5)
                     {
                         Intent i = new Intent(MainActivity.this, room1.class);
@@ -150,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
     private final List<Integer> Aux_places = new ArrayList<Integer>();
     private ImageButton Img_btn_BT, Img_btn_Account_settings,Img_btn_Alarm, Img_btn_door;
 
-    private String device_name="";
-    private BluetoothDevice device;
+    static public String device_name="";
+    static public BluetoothDevice device;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final UUID SERIAL_PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
