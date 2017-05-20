@@ -151,12 +151,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton Img_btn_BT, Img_btn_Account_settings,Img_btn_Alarm, Img_btn_door;
 
     private String device_name="";
-    private BluetoothDevice device;
+   public static BluetoothDevice device;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final UUID SERIAL_PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
     //private List<BluetoothDevice> devices;
-    private BluetoothSocket connectedSocket;
+    public static BluetoothSocket connectedSocket;
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -306,12 +306,12 @@ private BluetoothAdapter btAdapter;
     public void SendMessage(String toSend)
     {
         try {
-            if ((connectedSocket != null) && (connectedSocket.isConnected())) {
+            if ((MainActivity.connectedSocket != null) && (MainActivity.connectedSocket.isConnected())) {
 
                 if (toSend.length() > 0) {
                     // TBI - This object "should" be a mem
                     // ber variable
-                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connectedSocket.getOutputStream()));
+                    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(MainActivity.connectedSocket.getOutputStream()));
                     bw.write(toSend);
                     bw.write("\r\n");
                     bw.flush();
