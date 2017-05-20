@@ -36,6 +36,52 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    static String getBYTEFormatted(int number)
+    {
+        if(number>=100)
+        {
+            return String.valueOf(number);
+        }
+        else if(number>=10)
+        {
+            return "0"+String.valueOf(number);
+        }
+        else
+            {
+                return "00" +String.valueOf(number);
+            }
+    }
+
+    static String getJSONString()
+    {
+
+
+        return "{\"data\":[" +
+                getBYTEFormatted(PWMR1)+"," +
+                getBYTEFormatted(PWMG1)+"," +
+                getBYTEFormatted(PWMB1)+"," +
+                getBYTEFormatted(PWMR2)+"," +
+                getBYTEFormatted(PWMG2)+"," +
+                getBYTEFormatted(PWMB2)+"," +
+                getBYTEFormatted(stateRGB)+"," +
+                getBYTEFormatted(receivedSwitches)+"," +
+                getBYTEFormatted(alarmConfig)+"," +
+                doorSelection+"]}";
+    }
+
+    static String doorSelection="";
+
+    static int receivedSwitches=5;
+    static int alarmConfig=8;
+    static int PWMR1=255;
+    static int PWMG1=200;
+    static int PWMB1=128;
+    static int PWMR2=0;
+    static int PWMG2=15;
+    static int PWMB2=16;
+    static int stateRGB=3;
+
     private class BtBackgroundTask extends AsyncTask<BufferedReader, String, Void> {
         @Override
         protected Void doInBackground(BufferedReader... params) {
@@ -76,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
                     {
                         getDevicetoConnect(device_name);
                         connectdevice();
+                    }
+
+                    if (pos == 0)
+                    {
+                        Intent i = new Intent(MainActivity.this, DoorsActivity.class);
+                        startActivity(i);
                     }
 
 
@@ -151,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton Img_btn_BT, Img_btn_Account_settings,Img_btn_Alarm, Img_btn_door;
 
     private String device_name="";
-   public static BluetoothDevice device;
+    public static BluetoothDevice device;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final UUID SERIAL_PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
 
