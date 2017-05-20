@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    tools:context="com.fiuady.home_controlv10.room1">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+
+        android:id="@+id/linearLayout2"
+        android:layout_alignTop="@+id/linearLayout3"
+        android:layout_alignRight="@+id/resultado"
+        android:layout_alignEnd="@+id/resultado">
+
+        <TextView
+            android:id="@+id/TagACTIVAR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activar Sensor" />
+
+        <Switch
+            android:id="@+id/SW1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SW1  " />
+
+        <Switch
+            android:id="@+id/SW2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SW2  " />
+
+        <Switch
+            android:id="@+id/SW3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SW3  " />
+
+        <Switch
+            android:id="@+id/SW4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SW4  " />
+
+        <Switch
+            android:id="@+id/SW5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SW5  " />
+
+        <Switch
+            android:id="@+id/PIR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PIR    " />
+
+        <Switch
+            android:id="@+id/Alarma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ALARM " />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="20dp" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="13dp"
+        android:id="@+id/linearLayout3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardSW1"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardBackgroundColor="@color/cardview_shadow_start_color"
+            app:cardElevation="5dp"
+            card_view:cardCornerRadius="6dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/txtSW1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SWITCH 1: " />
+
+                <TextView
+                    android:id="@+id/txtSW1state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SW1 STATE: " />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardSW2"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardBackgroundColor="@color/cardview_shadow_start_color"
+            app:cardElevation="5dp"
+            card_view:cardCornerRadius="6dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtSW2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SWITCH 2: " />
+
+                <TextView
+                    android:id="@+id/txtSW2state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SW2 STATE: " />
+
+            </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardSW3"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardBackgroundColor="@color/cardview_shadow_start_color"
+            app:cardElevation="5dp"
+            card_view:cardCornerRadius="6dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/txtSW3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SWITCH 3: " />
+
+                <TextView
+                    android:id="@+id/txtSW3state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SW3 STATE: " />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardSW4"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardBackgroundColor="@color/cardview_shadow_start_color"
+            app:cardElevation="5dp"
+            card_view:cardCornerRadius="6dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/txtSW4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SWITCH 4: " />
+
+                <TextView
+                    android:id="@+id/txtSW4state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SW4 STATE: " />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardSW5"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardBackgroundColor="@color/cardview_shadow_start_color"
+            app:cardElevation="5dp"
+            card_view:cardCornerRadius="6dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/txtSW5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SWITCH 5: " />
+
+                <TextView
+                    android:id="@+id/txtSW5state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SW5 STATE: " />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardPIR"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardBackgroundColor="@color/cardview_shadow_start_color"
+            app:cardElevation="5dp"
+            card_view:cardCornerRadius="6dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/txtPIR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="PIR: " />
+
+                <TextView
+                    android:id="@+id/txtPIRstate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PIR STATE: " />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
