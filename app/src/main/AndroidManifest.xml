@@ -26,10 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".WindowWatcherActivity"/>
         <activity android:name=".bt_set" />
-        <activity android:name=".room1">
-        </activity>
+        <activity android:name=".room1"/>
+        <activity android:name=".DoorsActivity"/>
     </application>
 
 </manifest>
