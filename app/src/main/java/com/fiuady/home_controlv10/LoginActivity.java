@@ -31,6 +31,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiuady.home_controlv10.db.Account;
+import com.fiuady.home_controlv10.db.Cuentas;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private  Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +75,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
         mPasswordView = (EditText) findViewById(R.id.password);
+        account = new Account(getApplicationContext());
+        mEmailView.setText("clash_proplayer98@gmail.com");
+        //mEmailView.setText(cuentas.getUser());
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -149,6 +155,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (mAuthTask != null) {
             return;
         }
+       // String password = String.valueOf(mPasswordView.getText());
+
 
         // Reset errors.
         mEmailView.setError(null);
@@ -157,17 +165,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        Cuentas cuentas = account.getAccount(email);
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
+        if(cuentas != null)
+        {
+           // if (!TextUtils.isEmpty(password) && !isPasswordValid(email, password)) {
+              //  mPasswordView.setError(getString(R.string.error_incorrect_password));
+                //focusView = mPasswordView;
+             //   cancel = true;
+          //  }
+            //Cuentas cuentas = account.getAccount(email);
+            if(password.equals(cuentas.getPassword()))
+            {
+                cancel = false;
+            }
+            else
+            {
+                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                focusView = mPasswordView;
+                cancel = true;
+            }
         }
-
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
@@ -196,21 +218,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        if (email.equals("p"))
-        {
-            return true;
+        Cuentas cuentas = account.getAccount(email);
 
+    if (cuentas == null)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+//return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String email, String password) {
+        //TODO: Replace this with your own logic
+        Cuentas cuentas = account.getAccount(email);
+        Boolean value;
+        if(password.equals(cuentas.getPassword()))
+        {
+            value = true;
+            Toast.makeText(LoginActivity.this,"contrasena correcta" + cuentas.getPassword()
+                    , Toast.LENGTH_SHORT).show();
         }
         else
         {
-            return false;
+            Toast.makeText(LoginActivity.this,"nop" + cuentas.getPassword()
+                    , Toast.LENGTH_SHORT).show();
+            value = false;
         }
-        //return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        //return password.length() > 4;
+        return  value;
     }
 
     /**

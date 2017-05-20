@@ -3,9 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Home-ControlV1.0.iml" filepath="$PROJECT_DIR$/Home-ControlV1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Home-ControlV1.0.iml" filepath="$PROJECT_DIR$/Home-ControlV1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Library/Library.iml" filepath="$PROJECT_DIR$/Library/Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/Library/Library.iml" filepath="$PROJECT_DIR$/Library/Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/ProyectoBT.iml" filepath="$PROJECT_DIR$/ProyectoBT.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Library/library/library.iml" filepath="$PROJECT_DIR$/Library/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/Library/library/library.iml" filepath="$PROJECT_DIR$/Library/library/library.iml" />
     </modules>
   </component>

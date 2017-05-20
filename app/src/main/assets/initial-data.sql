@@ -1,0 +1,1 @@
+INSERT INTO [cuenta] (id,tipo, usuario, e_mail, password, configuracion) VALUES (1, 1, 'Lord Cosme', 'clash_proplayer98@gmail.com', '1234','ahorrador');
