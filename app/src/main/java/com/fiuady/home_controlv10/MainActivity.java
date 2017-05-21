@@ -35,7 +35,9 @@ import java.util.Set;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String Account_ID = "com.fiuady.home_controlv10.Account_ID";
+    public static final String Account_UserName= "com.fiuady.home_controlv10.Account_User";
+    private TextView UserName;
 
     static String getBYTEFormatted(int number)
     {
@@ -242,6 +244,12 @@ private BluetoothAdapter btAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        UserName = (TextView) findViewById(R.id.Txt_NameUser);
+        Intent intent = getIntent();
+        String ID = intent.getStringExtra(Account_ID);
+        String User = intent.getStringExtra(Account_UserName);
+        UserName.setText(User);
 
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         Img_btn_BT = (ImageButton)findViewById(R.id.ImgBtn_BTSetting);

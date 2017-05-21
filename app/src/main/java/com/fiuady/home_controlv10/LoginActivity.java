@@ -250,7 +250,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            String id = String.valueOf(cuentas.getId());
+            String user = cuentas.getUser();
             Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            i.putExtra(MainActivity.Account_ID, id);
+            i.putExtra(MainActivity.Account_UserName, user);
             startActivity(i);
         }
     }

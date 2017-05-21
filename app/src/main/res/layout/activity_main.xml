@@ -36,7 +36,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="20sp"
                 android:layout_toRightOf="@id/tag_welcome"
-                android:text=" Usuario"
+
                 android:id="@+id/Txt_NameUser"/>
 
             <ImageButton
