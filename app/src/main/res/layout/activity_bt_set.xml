@@ -77,23 +77,23 @@
     android:layout_height="1dp"
     android:background="@android:color/darker_gray"/>
 
-<EditText
-    android:id="@+id/state_text"
-    android:layout_width="match_parent"
-    android:layout_height="75dp"
-    android:layout_margin="5dp"
-    android:background="@android:color/transparent"
-    android:clickable="false"
-    android:cursorVisible="false"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:gravity="top"
-    android:inputType="textMultiLine"
-    android:lines="8"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
-    android:scrollbars="vertical"/>
+    <EditText
+        android:id="@+id/state_text"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical" />
 
-<View
+    <View
     android:layout_width="match_parent"
     android:layout_height="1dp"
     android:background="@android:color/darker_gray"/>
@@ -118,28 +118,5 @@
     android:layout_margin="5dp"
     android:layout_weight="1"/>
 
-<View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@android:color/darker_gray"/>
 
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <EditText
-        android:id="@+id/message_to_send_text"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
-
-    <Button
-        android:id="@+id/send_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send"/>
-</LinearLayout>
 </LinearLayout>

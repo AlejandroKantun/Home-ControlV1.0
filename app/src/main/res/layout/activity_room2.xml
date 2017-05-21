@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fiuady.home_controlv10.room1">
+    tools:context="com.fiuady.home_controlv10.room2">
     android:weightSum="1">
     <android.support.v7.widget.Toolbar
         android:id="@+id/appbar2"
@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Room 1"
+                    android:text="Room 2"
                     android:textSize="30sp"/>
 
             </LinearLayout>
@@ -62,7 +62,7 @@
 
 
         <com.flask.colorpicker.ColorPickerView
-            android:id="@+id/color_picker_view"
+            android:id="@+id/color_picker_view1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:alphaSlider="true"

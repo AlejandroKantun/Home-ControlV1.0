@@ -75,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
     static int receivedSwitches=5;
     static int alarmConfig=8;
     static int PWMR1=255;
-    static int PWMG1=200;
-    static int PWMB1=128;
-    static int PWMR2=0;
-    static int PWMG2=15;
-    static int PWMB2=16;
-    static int stateRGB=3;
+    static int PWMG1=255;
+    static int PWMB1=255;
+    static int PWMR2=255;
+    static int PWMG2=255;
+    static int PWMB2=255;
+    static int stateRGB=0;
 
     private class BtBackgroundTask extends AsyncTask<BufferedReader, String, Void> {
         @Override
@@ -130,11 +130,27 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                     }
 
+                    if (pos == 1)
+                    {
 
-                    if (pos == 5)
+                    }
+                    if (pos == 2)
+                    {
+
+                    }
+                    if (pos == 3)
                     {
                         Intent i = new Intent(MainActivity.this, room1.class);
                         startActivity(i);
+                    }
+                    if (pos == 4)
+                    {
+                        Intent i = new Intent(MainActivity.this, room2.class);
+                        startActivity(i);
+                    }
+                    if (pos == 5)
+                    {
+
                     }
                     if (pos == 6)
                     {
@@ -162,16 +178,16 @@ public class MainActivity extends AppCompatActivity {
             else if (a ==5)
             {
                 image_room.setImageResource(R.drawable.room3);
-                txt_Room.setText("Room 3");
+                txt_Room.setText("Bathroom");
             }
             else if(a== 6){
                 image_room.setImageResource(R.drawable.pool);
-                txt_Room.setText("Swimming Pool");
+                txt_Room.setText("Terrace");
             }
             else
             {
                 image_room.setImageResource(R.drawable.puertas);
-                txt_Room.setText("Puertas");
+                txt_Room.setText("Doors");
             }
         }
     }
@@ -268,7 +284,6 @@ private BluetoothAdapter btAdapter;
         Img_btn_Account_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SendMessage("CSLC");
             }
         });
 

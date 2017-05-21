@@ -2,8 +2,6 @@ package com.fiuady.home_controlv10;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.flask.colorpicker.ColorPickerView;
@@ -13,7 +11,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-public class room1 extends AppCompatActivity {
+public class room2 extends AppCompatActivity {
 
     public static String RGB_PWM1="";//Red
     public static String RGB_PWM2="";//Blue
@@ -22,8 +20,8 @@ public class room1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room1);
-        final ColorPickerView colorPickerView = (ColorPickerView) findViewById(R.id.color_picker_view);
+        setContentView(R.layout.activity_room2);
+        final ColorPickerView colorPickerView = (ColorPickerView) findViewById(R.id.color_picker_view1);
 
         colorPickerView.addOnColorChangedListener(new OnColorChangedListener() {
             @Override public void onColorChanged(int selectedColor) {
@@ -45,9 +43,9 @@ public class room1 extends AppCompatActivity {
 
                 }
 
-                MainActivity.PWMR1 = (Integer.parseInt(RGB_PWM1,16));
-                MainActivity.PWMG1 = (Integer.parseInt(RGB_PWM2,16));
-                MainActivity.PWMB1 = (Integer.parseInt(RGB_PWM2,16));
+                MainActivity.PWMR2 = (Integer.parseInt(RGB_PWM1,16));
+                MainActivity.PWMG2 = (Integer.parseInt(RGB_PWM2,16));
+                MainActivity.PWMB2 = (Integer.parseInt(RGB_PWM2,16));
                 Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
 
                 SendMessage(MainActivity.getJSONString());
@@ -80,6 +78,4 @@ public class room1 extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
 }

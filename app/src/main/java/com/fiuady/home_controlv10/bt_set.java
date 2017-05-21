@@ -387,38 +387,38 @@ public class bt_set extends ActionBarActivity { //AppCompatActivity
         });
 
         // Setup message-to-send edit-text
-        txtToSend = (EditText) findViewById(R.id.message_to_send_text);
+      //  txtToSend = (EditText) findViewById(R.id.message_to_send_text);
 
-        Button btnSend = (Button) findViewById(R.id.send_button);
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // ... Transmisión de datos
-                try {
-                    if ((connectedSocket != null) && (connectedSocket.isConnected())) {
-                        String toSend = txtToSend.getText().toString().trim();
+      // Button btnSend = (Button) findViewById(R.id.send_button);
+      // btnSend.setOnClickListener(new View.OnClickListener() {
+      //     @Override
+      //     public void onClick(View v) {
+      //         // ... Transmisión de datos
+      //         try {
+      //             if ((connectedSocket != null) && (connectedSocket.isConnected())) {
+      //                 String toSend = txtToSend.getText().toString().trim();
 
-                        if (toSend.length() > 0) {
-                            // TBI - This object "should" be a mem
-                            // ber variable
-                            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connectedSocket.getOutputStream()));
-                            bw.write(toSend);
-                            bw.write("\r\n");
-                            bw.flush();
+      //                 if (toSend.length() > 0) {
+      //                     // TBI - This object "should" be a mem
+      //                     // ber variable
+      //                     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connectedSocket.getOutputStream()));
+      //                     bw.write(toSend);
+      //                     bw.write("\r\n");
+      //                     bw.flush();
 
-                            //appendMessageText("[Enviado] " + toSend);
-                        }
+      //                     //appendMessageText("[Enviado] " + toSend);
+      //                 }
 
-                        txtToSend.setText("");
-                    } else {
-                        appendStateText("[Error] La conexión no parece estar activa!");
-                    }
-                } catch (IOException e) {
-                    appendStateText("[Error] Ocurrió un problema durante el envío de datos!");
-                    e.printStackTrace();
-                }
-            }
-        });
+      //                 txtToSend.setText("");
+      //             } else {
+      //                 appendStateText("[Error] La conexión no parece estar activa!");
+      //             }
+      //         } catch (IOException e) {
+      //             appendStateText("[Error] Ocurrió un problema durante el envío de datos!");
+      //             e.printStackTrace();
+      //         }
+      //     }
+      // });
 
 
         // Register for broadcasts when bluetooth device state changes
