@@ -27,10 +27,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="Control de apertura de puertas"
                 android:textSize="20sp"
-                android:id="@+id/tag_doorTitle"/>
+                android:id="@+id/tag_doorTitle"
+                android:layout_alignBottom="@+id/ImgBtn_doorsLogin"
+                android:layout_alignParentStart="true" />
 
 
             <ImageButton
@@ -38,12 +39,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
-                android:src="@drawable/key-variant"
-                android:layout_marginTop="10dp"
+                android:src="@drawable/keyvariant"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                />
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="7dp" />
 
 
         </RelativeLayout>
@@ -92,5 +93,7 @@
         android:layout_alignBottom="@+id/txt_garage"
         android:layout_alignParentEnd="true"
         />
+
+
 
 </RelativeLayout>
