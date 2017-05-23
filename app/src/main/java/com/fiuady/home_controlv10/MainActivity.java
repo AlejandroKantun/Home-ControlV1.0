@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
     static int PWMG2=255;
     static int PWMB2=255;
     static int stateRGB=0;
+    static int color_background1=0;
+    static int color_background2=0;
 
     private class BtBackgroundTask extends AsyncTask<BufferedReader, String, Void> {
         @Override
