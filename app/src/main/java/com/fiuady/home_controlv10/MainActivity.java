@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,6 +26,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiuady.home_controlv10.db.Account;
+import com.fiuady.home_controlv10.db.Cuentas;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -37,7 +42,9 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
     public static final String Account_ID = "com.fiuady.home_controlv10.Account_ID";
     public static final String Account_UserName= "com.fiuady.home_controlv10.Account_User";
+    public static final String Account_aux= "com.fiuady.home_controlv10.aux";
     private TextView UserName;
+    private Account account;
 
     static String getBYTEFormatted(int number)
     {
@@ -73,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static String doorSelection="";
-
     static int receivedSwitches=5;
     static int alarmConfig=8;
     static int PWMR1=255;
@@ -248,12 +254,14 @@ private BluetoothAdapter btAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         UserName = (TextView) findViewById(R.id.Txt_NameUser);
         Intent intent = getIntent();
-        String ID = intent.getStringExtra(Account_ID);
+        final String ID = intent.getStringExtra(Account_ID);
         String User = intent.getStringExtra(Account_UserName);
+        String aux = intent.getStringExtra(Account_aux);
         UserName.setText(User);
+
+
 
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         Img_btn_BT = (ImageButton)findViewById(R.id.ImgBtn_BTSetting);
@@ -296,6 +304,139 @@ private BluetoothAdapter btAdapter;
         Img_btn_Account_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final PopupMenu popupMenu = new PopupMenu(MainActivity.this, Img_btn_Account_settings);
+                popupMenu.getMenuInflater().inflate(R.menu.pop_menu_account, popupMenu.getMenu());
+                popupMenu.getMenu().clear();
+                popupMenu.getMenu().add("Agregar cuenta");
+                popupMenu.getMenu().add("Modificar cuenta");
+                popupMenu.getMenu().add("Eliminar cuenta");
+                popupMenu.getMenu().add("Log out");
+                account = new Account(getApplicationContext());
+                final Cuentas cuentas = account.getAccountbyid(ID);
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getTitle().equals("Agregar cuenta") )
+                        {
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                           // builder1.setTitle("Modificar producto existente");
+                            View product_view = getLayoutInflater().inflate(R.layout.add_account, null);
+
+                            final EditText Username = (EditText) product_view.findViewById(R.id.EditText_UserName);
+                            final EditText Email = (EditText) product_view.findViewById(R.id.EditEmail);
+                            final EditText Password = (EditText) product_view.findViewById(R.id.EditPassword);
+                            final EditText Pin= (EditText) product_view.findViewById(R.id.EditPin);
+
+
+
+                            builder1.setPositiveButton("Crear", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                    if(!Username.getText().toString().isEmpty() && !Email.getText().toString().isEmpty() && !Password.getText().toString().isEmpty() && !Pin.getText().toString().isEmpty())
+                                    {
+                                           account.CreateNonAdminAccount(Username.getText().toString(), Email.getText().toString(), Password.getText().toString(), Pin.getText().toString());
+                                        Toast.makeText(MainActivity.this,"Cuenta creada"
+                                              , Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                    else
+                                    {
+
+
+                                        Toast.makeText(MainActivity.this,"Operación no exitosa. "+
+                                                "Debe llenar todos los campos ", Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                }
+                            });
+                            builder1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            // builder.show();
+                            builder1.setView(product_view);
+
+                            //  builder.setView(product_layout);
+                            builder1.show();
+
+                        }
+                        else if(item.getTitle().equals("Modificar cuenta"))
+                        {
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+                            // builder1.setTitle("Modificar producto existente");
+                            View product_view = getLayoutInflater().inflate(R.layout.modify_account, null);
+
+                            final EditText Username = (EditText) product_view.findViewById(R.id.EditText_UserName);
+                          //  final EditText Email = (EditText) product_view.findViewById(R.id.EditEmail);
+                            final EditText Password = (EditText) product_view.findViewById(R.id.EditPassword);
+                            final EditText Pin= (EditText) product_view.findViewById(R.id.EditPin);
+                             final String Id = String.valueOf(cuentas.getId());
+
+
+                            builder1.setPositiveButton("Modificar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                    if(!Username.getText().toString().isEmpty()  && !Password.getText().toString().isEmpty() && !Pin.getText().toString().isEmpty())
+                                    {
+                                        account.modify_account( Id ,Username.getText().toString(), Password.getText().toString(), Pin.getText().toString());
+                                        Toast.makeText(MainActivity.this,"Cuenta modificada"
+                                                , Toast.LENGTH_SHORT).show();
+                                        UserName.setText(Username.getText().toString());
+
+                                    }
+
+                                    else
+                                    {
+
+
+                                        Toast.makeText(MainActivity.this,"Operación no exitosa. "+
+                                                "Debe llenar todos los campos ", Toast.LENGTH_SHORT).show();
+                                    }
+
+
+                                }
+                            });
+                            builder1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            // builder.show();
+                            builder1.setView(product_view);
+
+                            //  builder.setView(product_layout);
+                            builder1.show();
+
+                        }
+                        else if(item.getTitle().equals("Eliminar cuenta"))
+                        {
+
+
+                        }
+                        else
+                        {
+                            finish();
+                           // Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                           // startActivityForResult(i);
+                        }
+                        return false;
+                    }
+                });
+
+                popupMenu.show();
             }
         });
 

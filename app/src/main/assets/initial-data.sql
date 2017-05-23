@@ -1,1 +1,1 @@
-INSERT INTO [cuenta] (id,tipo, usuario, e_mail, password, configuracion) VALUES (1, 1, 'Lord Cosme', 'clash_proplayer98@gmail.com', '1234','ahorrador');
+INSERT INTO [cuenta] (id,tipo, usuario, e_mail, password, Pin, JSON1, JSON2, JSON3, JSON4, JSON5, JSON6, JSON7, JSON8, JSON9, JSON10) VALUES (1, 1, 'Lord Cosme', 'clash_proplayer98@gmail.com', '1234','123','000', '5', '8' , '255' , '255' ,'255', '255' , '255' ,'255', '0');
