@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             //appendMessageText("[Recibido] " + values[0]);
+            String aux = values[0];
+            aux.toUpperCase();
         }
     }
 
