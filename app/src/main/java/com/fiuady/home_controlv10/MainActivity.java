@@ -45,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
     public static final String Account_aux= "com.fiuady.home_controlv10.aux";
     private TextView UserName;
     private Account account;
+    static private String ID;
+
+    static String getSelectedID ()
+    {
+        return ID;
+    }
 
     static String getBYTEFormatted(int number)
     {
@@ -256,7 +262,7 @@ private BluetoothAdapter btAdapter;
         setContentView(R.layout.activity_main);
         UserName = (TextView) findViewById(R.id.Txt_NameUser);
         Intent intent = getIntent();
-        final String ID = intent.getStringExtra(Account_ID);
+        /*final String */ID = intent.getStringExtra(Account_ID);
         String User = intent.getStringExtra(Account_UserName);
         String aux = intent.getStringExtra(Account_aux);
         UserName.setText(User);

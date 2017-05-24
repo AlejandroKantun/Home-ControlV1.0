@@ -10,6 +10,9 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.fiuady.home_controlv10.db.Account;
+import com.fiuady.home_controlv10.db.Cuentas;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -54,6 +57,8 @@ public class DoorsActivity extends AppCompatActivity {
         loginButton = (ImageButton) findViewById(R.id.ImgBtn_doorsLogin);
         //garageDoorSwitch.setChecked(MainActivity.garageDoorState);
         //frontDoorSwitch.setChecked(MainActivity.frontDoorState);
+        Account cuenta = new Account(getApplicationContext());
+        final Cuentas cuentas = cuenta.getAccountbyid(MainActivity.getSelectedID());
         if (MainActivity.doorSelection.equals("003")) {
             garageDoorSwitch.setChecked(true);
             frontDoorSwitch.setChecked(true);
@@ -64,9 +69,10 @@ public class DoorsActivity extends AppCompatActivity {
             garageDoorSwitch.setChecked(true);
             frontDoorSwitch.setChecked(false);
         }
+
         garageDoorSwitch.setEnabled(false);
         frontDoorSwitch.setEnabled(false);
-        //Toast.makeText(getApplicationContext(),MainActivity.device.getName().toString(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),cuentas.getUser(),Toast.LENGTH_SHORT).show();
         garageDoorSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,9 +131,8 @@ public class DoorsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if(input.getText().toString().equals("123456789"))
+                        if(input.getText().toString().equals(cuentas.getPin()))
                         {
-
                             frontDoorSwitch.setEnabled(true);
                             garageDoorSwitch.setEnabled(true);
                             Toast.makeText(getApplicationContext(),"PIN Correcto", Toast.LENGTH_LONG).show();
@@ -135,7 +140,6 @@ public class DoorsActivity extends AppCompatActivity {
                         else
                             {
                                 Toast.makeText(getApplicationContext(),"PIN Incorrecto", Toast.LENGTH_LONG).show();
-
                             }
                     }
                 });
