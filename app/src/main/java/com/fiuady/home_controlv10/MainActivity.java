@@ -37,6 +37,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
@@ -98,6 +99,16 @@ public class MainActivity extends AppCompatActivity {
     static int color_background1=0;
     static int color_background2=0;
 
+    static String result = " ";
+
+    static boolean ISActivityWWStarted = false;
+
+
+
+
+
+
+
     private class BtBackgroundTask extends AsyncTask<BufferedReader, String, Void> {
         @Override
         protected Void doInBackground(BufferedReader... params) {
@@ -115,8 +126,24 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             //appendMessageText("[Recibido] " + values[0]);
-            String aux = values[0];
-            aux.toUpperCase();
+            if(ISActivityWWStarted==true)
+            {
+                //WindowWatcherActivity.SwitchesState(Byte.valueOf((byte) (receivedSwitches)));**********
+                // WindowWatcherActivity.txt.setText(String.valueOf(receivedSwitches));****************
+                if(values[0].startsWith("ESTADO")) {
+                    StringTokenizer st = new StringTokenizer(values[0]," ");
+                    st.nextToken();
+                    String estado = st.nextToken();
+
+                    result = estado;
+                    receivedSwitches = Integer.parseInt(result,16);
+                    WindowWatcherActivity.SwitchesState(Byte.valueOf((byte) (receivedSwitches)));
+
+                    WindowWatcherActivity.txt.setText(estado);
+                    //WindowWatcherActivity.resultado.setText(String.valueOf((receivedSwitches)));
+                }
+            }
+
         }
     }
 
@@ -276,6 +303,12 @@ private BluetoothAdapter btAdapter;
         Img_btn_Alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (device_name.length()>0)
+                {
+                    getDevicetoConnect(device_name);
+                    connectdevice();
+                }
                 Intent i = new Intent(MainActivity.this, WindowWatcherActivity.class);
                 startActivity(i);
 

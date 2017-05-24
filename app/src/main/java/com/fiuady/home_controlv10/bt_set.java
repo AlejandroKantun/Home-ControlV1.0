@@ -47,6 +47,8 @@ public class bt_set extends ActionBarActivity { //AppCompatActivity
     private BluetoothSocket connectedSocket;
 
     private EditText txtState;
+    private EditText txtMessages;
+    private EditText txtToSend;
 
     private ImageButton ImgBtn_PairedBt;
     private ImageButton ImgBtn_findBt;
@@ -74,8 +76,7 @@ public class bt_set extends ActionBarActivity { //AppCompatActivity
 
         @Override
         protected void onProgressUpdate(String... values) {
-            String aux = values[0];
-            aux.toUpperCase();
+            //appendMessageText("[Recibido] " + values[0]);
         }
     }
 
