@@ -113,12 +113,42 @@ public final class Account {
                 AccountDbSchema.AccountTable.Columns.ID + "= ?",
                 new String[]{id}
         );
+    }
 
-        //  db.rawQuery("UPDATE products " +
-        //   "SET qty = "+  qty + "" +
-        //   " WHERE id = "+ id  , null);
+    public void Delete_account(String id)
+    {
+
+            db.execSQL("  DELETE FROM cuenta where id = " + id);
 
     }
+
+    public void Guardar_Configuracion(String id , String json1, String json2, String json3, String json4, String json5, String json6, String json7, String json8, String json9, String json10, String json11, String json12) {
+
+        ContentValues values = new ContentValues();
+
+        //values.put(ProductTable.Columns.QUANTITY, qty);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON1, json1);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON2, json2);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON3, json3);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON4, json4);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON5, json5);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON6, json6);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON7, json7);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON8, json8);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON9, json9);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON10, json10);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON11, json11);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON12, json12);
+
+        db.update(AccountDbSchema.AccountTable.Name,
+                values,
+                AccountDbSchema.AccountTable.Columns.ID + "= ?",
+                new String[]{id}
+        );
+    }
+
+
+
 
 
 
