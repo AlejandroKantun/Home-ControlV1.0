@@ -51,7 +51,7 @@ public class room1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room1);
         Img_Btn_ledOn1 = (ImageButton)findViewById(R.id.Img_btn_LEDON1);
-
+        Img_Btn_ledOn1.setBackgroundColor(MainActivity.color_background1);
 /*----------------------------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------*/
          /*Ventilador y sensor de temperatura*/

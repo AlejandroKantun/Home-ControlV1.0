@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 getBYTEFormatted(stateRGB)+"," +
                 getBYTEFormatted(receivedSwitches)+"," +
                 getBYTEFormatted(alarmConfig)+"," +
-                doorSelection+"]}";
+                doorSelection+","+command+","+value1+","+value2+","+value3+"]}";
     }
 
     static String doorSelection="";
@@ -96,17 +96,16 @@ public class MainActivity extends AppCompatActivity {
     static int PWMG2=255;
     static int PWMB2=255;
     static int stateRGB=0;
+    static String command="1";
+    static String value1 = "4";
+    static String value2="5";
+    static String value3="9";
     static int color_background1=0;
     static int color_background2=0;
 
     static String result = " ";
 
     static boolean ISActivityWWStarted = false;
-
-
-
-
-
 
 
     private class BtBackgroundTask extends AsyncTask<BufferedReader, String, Void> {
@@ -295,6 +294,18 @@ private BluetoothAdapter btAdapter;
         UserName.setText(User);
 
 
+        account = new Account(getApplicationContext());
+        final Cuentas cuentas = account.getAccountbyid(ID);
+
+        doorSelection = String.valueOf(cuentas.getJson10());
+        PWMR1=Integer.valueOf(cuentas.getJson1());
+        PWMG1=Integer.valueOf(cuentas.getJson2());
+        PWMB1=Integer.valueOf(cuentas.getJson3());
+        PWMR2=Integer.valueOf(cuentas.getJson4());
+        PWMG2=Integer.valueOf(cuentas.getJson5());
+        PWMB2=Integer.valueOf(cuentas.getJson6());
+        stateRGB=Integer.valueOf(cuentas.getJson7());
+
 
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         Img_btn_BT = (ImageButton)findViewById(R.id.ImgBtn_BTSetting);
@@ -351,8 +362,8 @@ private BluetoothAdapter btAdapter;
                 popupMenu.getMenu().add("Modificar cuenta");
                 popupMenu.getMenu().add("Eliminar cuenta");
                 popupMenu.getMenu().add("Log out");
-                account = new Account(getApplicationContext());
-                final Cuentas cuentas = account.getAccountbyid(ID);
+
+
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override

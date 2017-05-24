@@ -59,6 +59,7 @@ public class DoorsActivity extends AppCompatActivity {
         //frontDoorSwitch.setChecked(MainActivity.frontDoorState);
         Account cuenta = new Account(getApplicationContext());
         final Cuentas cuentas = cuenta.getAccountbyid(MainActivity.getSelectedID());
+
         if (MainActivity.doorSelection.equals("003")) {
             garageDoorSwitch.setChecked(true);
             frontDoorSwitch.setChecked(true);
