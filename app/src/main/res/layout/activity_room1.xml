@@ -65,4 +65,122 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txv_vent1_tit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tempera Actual Del Cuarto"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="left"
+        android:textColor="@color/colorPrimaryDark"
+        />
+    <EditText
+        android:id="@+id/edt_temp1"
+        android:layout_width="100dp"
+        android:textSize="18sp"
+        tools:text="100.37 °C"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txv_vent1_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ventilador"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="left"
+        android:textColor="@color/colorPrimaryDark"
+        />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp">
+    <TextView
+        android:id="@+id/txv_vent1_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Controlar automáticamente:"
+        android:textSize="18sp"
+        android:gravity="start"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/cardview_dark_background"
+        />
+
+    <Switch
+        android:id="@+id/swt_vent1_auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        />
+</LinearLayout>
+    <Switch
+        android:id="@+id/swt_vent1_on_off"
+        android:layout_height="wrap_content"
+        android:text="ON/OFF"
+        android:textSize="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="150sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rango de temperaturas:"
+        android:textSize="18sp"
+        android:textColor="@color/cardview_dark_background"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min"
+            android:textSize="18sp"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_marginTop="37dp"
+            />
+
+        <NumberPicker
+            android:id="@+id/nup_temp1_min"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            >
+
+        </NumberPicker>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="37dp"
+            android:textSize="18sp"
+            android:textColor="@color/cardview_dark_background"
+            />
+
+        <NumberPicker
+            android:id="@+id/nup_temp1_max"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            >
+        </NumberPicker>
+    </LinearLayout>
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>

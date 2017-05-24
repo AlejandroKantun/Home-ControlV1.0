@@ -35,8 +35,74 @@ android:weightSum="1">
 
             </LinearLayout>
 
+
         </RelativeLayout>
+
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/txv_lamp1_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lámpara 1"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        />
+    <Switch
+        android:id="@+id/swt_lamp1"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:text="ON/OFF"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <CheckBox
+        android:id="@+id/chb_lamp1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajustar Intensidad Automáticamente"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:id="@+id/txv_lamp1_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Intensidad de Lámpara 1"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+        <EditText
+            android:id="@+id/edt_lamp1_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="3"
+            android:inputType="none"
+            />
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/seb_lamp1"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/cardview_shadow_end_color"
+        android:max="@android:integer/status_bar_notification_info_maxnum"
+        android:visibility="visible"
+        />
 
 </LinearLayout>
