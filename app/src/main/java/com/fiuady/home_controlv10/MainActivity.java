@@ -430,7 +430,10 @@ private BluetoothAdapter btAdapter;
                         else if(item.getTitle().equals("Eliminar cuenta"))
                         {
 
-
+                           // for (Cuentas c : account.Getallaccounts())
+                           // {
+                             //   Toast.makeText(MainActivity.this, c.getUser(), Toast.LENGTH_SHORT).show();
+                          //  }
 
                         }
                         else

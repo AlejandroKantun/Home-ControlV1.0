@@ -147,9 +147,22 @@ public final class Account {
         );
     }
 
+    public List<Cuentas> Getallaccounts() {
+        List<Cuentas> list = new ArrayList<Cuentas>();
 
+        //  Cursor cursor = db.rawQuery("SELECT * FROM categories ORDER BY id", null);
 
+        AccountCursor  cursor = new AccountCursor ((db.rawQuery("SELECT * FROM cuenta where tipo = 0", null)));
 
+        while (cursor.moveToNext()) {
 
+            //list.add(new Category(cursor.getInt(cursor.getColumnIndex((InventoryDBSchema.CategoriesTable.Columns.ID))),
+            //   cursor.getString(cursor.getColumnIndex((InventoryDBSchema.CategoriesTable.Columns.DESCRIPTION)))));
+
+                list.add((cursor.getCuenta()));  // metodo wrappcursor
+        }
+        cursor.close();
+        return list;
+    }
 
 }
