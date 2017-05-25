@@ -24,8 +24,12 @@ public class Cuentas {
     private String json10;
     private String json11;
     private String json12;
+    private String json13;
+    private String json14;
+    private String extra1;
+    private String extra2;
 
-public Cuentas(int id, int type, String user, String mail, String password, String pin, String json1, String json2, String json3, String json4,String json5, String json6, String json7, String json8,String json9, String json10, String json11, String json12)
+public Cuentas(int id, int type, String user, String mail, String password, String pin, String json1, String json2, String json3, String json4,String json5, String json6, String json7, String json8,String json9, String json10, String json11, String json12,String json13, String json14, String extra1, String extra2)
 {
     this.id = id;
     this.type = type;
@@ -45,7 +49,43 @@ public Cuentas(int id, int type, String user, String mail, String password, Stri
     this.json10 = json10;
     this.json11 = json11;
     this.json12 = json12;
+    this.json13 = json13;
+    this.json14 = json14;
+    this.extra1 = extra1;
+    this.extra2 = extra2;
 }
+
+    public String getJson13() {
+        return json13;
+    }
+
+    public void setJson13(String json13) {
+        this.json13 = json13;
+    }
+
+    public String getJson14() {
+        return json14;
+    }
+
+    public void setJson14(String json14) {
+        this.json14 = json14;
+    }
+
+    public String getExtra1() {
+        return extra1;
+    }
+
+    public void setExtra1(String extra1) {
+        this.extra1 = extra1;
+    }
+
+    public String getExtra2() {
+        return extra2;
+    }
+
+    public void setExtra2(String extra2) {
+        this.extra2 = extra2;
+    }
 
     public String getPin() {
         return pin;

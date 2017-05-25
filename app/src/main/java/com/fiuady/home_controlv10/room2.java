@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.flask.colorpicker.ColorPickerView;
@@ -17,6 +18,7 @@ import java.io.OutputStreamWriter;
 public class room2 extends AppCompatActivity {
     private ImageButton Img_Btn_ledOn2 ;
 
+
     public static String RGB_PWM1="";//Red
     public static String RGB_PWM2="";//Blue
     public static String RGB_PWM3="";//Green
@@ -27,6 +29,9 @@ public class room2 extends AppCompatActivity {
         setContentView(R.layout.activity_room2);
         Img_Btn_ledOn2= (ImageButton)findViewById(R.id.Img_btn_LEDON2);
         Img_Btn_ledOn2.setBackgroundColor(MainActivity.color_background2);
+
+
+
         Img_Btn_ledOn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

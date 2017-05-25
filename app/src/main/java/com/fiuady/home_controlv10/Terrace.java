@@ -46,6 +46,7 @@ public class Terrace extends AppCompatActivity {
         txvPWMvalueLabel = (TextView) findViewById(R.id.txv_lamp1_label);
         sebPWMvalue = (SeekBar) findViewById(R.id.seb_lamp1); //SeekBar para poder dar valor de la Intensidad
         edtPWMvalue.setEnabled(false);
+        edtPWMvalue.setText(String.valueOf(0));
 
         if( savedInstanceState != null){
             swLamp1Status = savedInstanceState.getBoolean(KEY_BOOLEAN_SWLAMP1STATUS);
@@ -113,6 +114,19 @@ chbAuto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() 
         }
     }
 });
+
+        sebPWMvalue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                edtPWMvalue.setText(String.valueOf(progress));
+            }
+        });
 
 
     }

@@ -28,6 +28,10 @@ public final class AccountDbSchema {
             public static final String JSON10 = "JSON10";
             public static final String JSON11 = "JSON11";
             public static final String JSON12 = "JSON12";
+            public static final String JSON13 = "JSON13";
+            public static final String JSON14 = "JSON14";
+            public static final String Extra1 = "EXTRA1";
+            public static final String Extra2 = "EXTRA2";
         }
     }
 

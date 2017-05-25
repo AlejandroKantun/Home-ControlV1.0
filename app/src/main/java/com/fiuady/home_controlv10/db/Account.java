@@ -25,8 +25,8 @@ class AccountCursor extends CursorWrapper {
                 cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.Usuario))), cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.Correo))), cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.Contrasena))) ,cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.Pin))),
                 cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON1))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON2))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON3))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON4))),
                 cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON5))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON6))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON7))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON8))),
-                cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON9))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON10))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON11))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON12))));
-
+                cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON9))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON10))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON11))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON12))),
+                cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON13))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.JSON14))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.Extra1))),cursor.getString(cursor.getColumnIndex((AccountDbSchema.AccountTable.Columns.Extra2))));
     }
 
 }
@@ -122,7 +122,7 @@ public final class Account {
 
     }
 
-    public void Guardar_Configuracion(String id , String json1, String json2, String json3, String json4, String json5, String json6, String json7, String json8, String json9, String json10, String json11, String json12) {
+    public void Guardar_Configuracion(String id , String json1, String json2, String json3, String json4, String json5, String json6, String json7, String json8, String json9, String json10, String json11, String json12, String json13, String json14, String extra1, String extra2 ) {
 
         ContentValues values = new ContentValues();
 
@@ -139,6 +139,10 @@ public final class Account {
         values.put(AccountDbSchema.AccountTable.Columns.JSON10, json10);
         values.put(AccountDbSchema.AccountTable.Columns.JSON11, json11);
         values.put(AccountDbSchema.AccountTable.Columns.JSON12, json12);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON13, json13);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON14, json14);
+        values.put(AccountDbSchema.AccountTable.Columns.Extra1, extra1);
+        values.put(AccountDbSchema.AccountTable.Columns.Extra2, extra2);
 
         db.update(AccountDbSchema.AccountTable.Name,
                 values,
@@ -146,6 +150,88 @@ public final class Account {
                 new String[]{id}
         );
     }
+
+    public void Update_JSON_Reyes(String id , String json10) {
+
+        ContentValues values = new ContentValues();
+
+        //values.put(ProductTable.Columns.QUANTITY, qty);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON10, json10);
+
+        db.update(AccountDbSchema.AccountTable.Name,
+                values,
+                AccountDbSchema.AccountTable.Columns.ID + "= ?",
+                new String[]{id}
+        );
+    }
+
+
+    public void Update_Jason_Frodo(String id , String json1, String json2, String json3, String json4, String json5, String json6, String json7) {
+
+        ContentValues values = new ContentValues();
+
+        //values.put(ProductTable.Columns.QUANTITY, qty);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON1, json1);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON2, json2);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON3, json3);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON4, json4);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON5, json5);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON6, json6);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON7, json7);
+
+        db.update(AccountDbSchema.AccountTable.Name,
+                values,
+                AccountDbSchema.AccountTable.Columns.ID + "= ?",
+                new String[]{id}
+        );
+    }
+
+    public void Update_Jason_Chino(String id , String json8, String json9) {
+
+        ContentValues values = new ContentValues();
+
+        //values.put(ProductTable.Columns.QUANTITY, qty);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON8, json8);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON9, json9);
+
+        db.update(AccountDbSchema.AccountTable.Name,
+                values,
+                AccountDbSchema.AccountTable.Columns.ID + "= ?",
+                new String[]{id}
+        );
+    }
+
+    public void Update_Jason_Madera(String id ,  String json11, String json12, String json13, String json14) {
+
+        ContentValues values = new ContentValues();
+
+        //values.put(ProductTable.Columns.QUANTITY, qty);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON11, json11);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON12, json12);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON13, json13);
+        values.put(AccountDbSchema.AccountTable.Columns.JSON14, json14);
+        db.update(AccountDbSchema.AccountTable.Name,
+                values,
+                AccountDbSchema.AccountTable.Columns.ID + "= ?",
+                new String[]{id}
+        );
+    }
+
+    public void Update_Extras_Frodo(String id ,  String extra1, String extra2) {
+
+        ContentValues values = new ContentValues();
+
+        //values.put(ProductTable.Columns.QUANTITY, qty);
+        values.put(AccountDbSchema.AccountTable.Columns.Extra1, extra1);
+        values.put(AccountDbSchema.AccountTable.Columns.Extra2, extra2);
+
+        db.update(AccountDbSchema.AccountTable.Name,
+                values,
+                AccountDbSchema.AccountTable.Columns.ID + "= ?",
+                new String[]{id}
+        );
+    }
+
 
     public List<Cuentas> Getallaccounts() {
         List<Cuentas> list = new ArrayList<Cuentas>();
@@ -164,5 +250,7 @@ public final class Account {
         cursor.close();
         return list;
     }
+
+
 
 }

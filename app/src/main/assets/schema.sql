@@ -16,5 +16,9 @@ CREATE TABLE [cuenta](
     [JSON9] TEXT ,
     [JSON10] TEXT ,
     [JSON11] TEXT ,
-    [JSON12] TEXT
+    [JSON12] TEXT,
+    [JSON13] TEXT ,
+    [JSON14] TEXT ,
+    [EXTRA1] TEXT ,
+    [EXTRA2] TEXT
     );
