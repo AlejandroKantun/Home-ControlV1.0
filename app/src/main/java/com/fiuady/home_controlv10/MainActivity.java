@@ -403,6 +403,7 @@ if(cuentas.getJson1()!= null && cuentas.getJson2()!= null && cuentas.getJson3()!
                         fragmentTransaction.commit();*/
                         Toast.makeText(getApplicationContext(),"Doors",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, DoorsActivity.class);
+                        intent.putExtra(DoorsActivity.Account_ID2, ID);
                         startActivity(intent);
                         return true;
 

@@ -14,6 +14,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiuady.home_controlv10.db.Account;
+import com.fiuady.home_controlv10.db.Cuentas;
+
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
@@ -39,7 +42,7 @@ public class WindowWatcherActivity extends AppCompatActivity {
     static String SWState5=" ";
     static String PIRState=" ";
 
-
+    String Valor_actual;
 
 
 
@@ -56,6 +59,9 @@ public class WindowWatcherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_window_watcher);
+
+        final Account cuenta = new Account(getApplicationContext());
+        final Cuentas cuentas = cuenta.getAccountbyid(MainActivity.getSelectedID());
 
         final BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -80,6 +86,9 @@ public class WindowWatcherActivity extends AppCompatActivity {
 
 
         MainActivity.ISActivityWWStarted = true;
+//////////////////
+
+        /////////////////////////////////////////
 
 
         STATE1.setText(SWState1);
@@ -91,11 +100,125 @@ public class WindowWatcherActivity extends AppCompatActivity {
 
         //getDevicetoConnect(deviceName);
         //connectdevice();
+        String aux2 = cuentas.getJson8();
+        String aux3 = cuentas.getJson9();
+        if(cuentas.getJson8() == null)
+        {
+            aux2 = "000";
+        }
+
+        if(cuentas.getJson9() == null)
+        {
+            aux3 = "000";
+        }
+
+
+if(aux2.equals("000"))
+{
+   sw1.setChecked(false);
+   sw2.setChecked(false);
+    sw3.setChecked(false);
+}
+else if(aux2.equals("001") )
+{
+    sw1.setChecked(false);
+    sw2.setChecked(false);
+    sw3.setChecked(true);
+}
+else if(aux2.equals("010") )
+{
+    sw1.setChecked(false);
+    sw2.setChecked(true);
+    sw3.setChecked(false);
+}
+else if(aux2.equals("011") )
+{
+    sw1.setChecked(false);
+    sw2.setChecked(true);
+    sw3.setChecked(true);
+}
+else if(aux2.equals("100"))
+{
+    sw1.setChecked(true);
+    sw2.setChecked(false);
+    sw3.setChecked(false);
+}
+
+else if(aux2.equals( "101"))
+{
+    sw1.setChecked(true);
+    sw2.setChecked(false);
+    sw3.setChecked(true);
+}
+else if(aux2.equals("110") )
+{
+    sw1.setChecked(true);
+    sw2.setChecked(true);
+    sw3.setChecked(false);
+}
+else
+{
+    sw1.setChecked(true);
+    sw2.setChecked(true);
+    sw3.setChecked(true);
+}
 
 
 
+        if(aux3.equals("000"))
+        {
+            sw4.setChecked(false);
+            pir.setChecked(false);
+            alarm.setChecked(false);
+        }
+        else if(aux3.equals("001") )
+        {
+            sw4.setChecked(false);
+            pir.setChecked(false);
+            alarm.setChecked(true);
+        }
+        else if(aux3.equals("010") )
+        {
+            sw4.setChecked(false);
+            pir.setChecked(true);
+            alarm.setChecked(false);
+        }
+        else if(aux3.equals("011") )
+        {
+            sw4.setChecked(false);
+            pir.setChecked(true);
+            alarm.setChecked(true);
+        }
+        else if(aux3.equals("100"))
+        {
+            sw4.setChecked(true);
+            pir.setChecked(false);
+            alarm.setChecked(false);
+        }
 
+        else if(aux3.equals( "101"))
+        {
+            sw4.setChecked(true);
+            pir.setChecked(false);
+            alarm.setChecked(true);
+        }
+        else if(aux3.equals("110") )
+        {
+            sw4.setChecked(true);
+            pir.setChecked(true);
+            alarm.setChecked(false);
+        }
+        else
+        {
+            sw4.setChecked(true);
+            pir.setChecked(true);
+            alarm.setChecked(true);
+        }
 
+        resultado.setText(StringByte(GetSensores()));
+        MainActivity.alarmConfig=Integer.valueOf(GetSensores());
+        Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
+        SendMessage(MainActivity.getJSONString());
 
 
 
@@ -110,14 +233,12 @@ public class WindowWatcherActivity extends AppCompatActivity {
                 Log.i("Log1",String.valueOf(SW3));
 
 
-
-
                 resultado.setText(StringByte(GetSensores()));
                 MainActivity.alarmConfig=Integer.valueOf(GetSensores());
                 Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
-
-
+                Valor_actual = CheckSensores1();
+                cuenta.Update_Jason_Chino1(String.valueOf(cuentas.getId()),Valor_actual);
 
 
             }
@@ -139,8 +260,8 @@ public class WindowWatcherActivity extends AppCompatActivity {
                 MainActivity.alarmConfig=Integer.valueOf(GetSensores());
                 Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
-
-
+                Valor_actual = CheckSensores1();
+                cuenta.Update_Jason_Chino1(String.valueOf(cuentas.getId()),Valor_actual);
 
             }
         });
@@ -161,8 +282,8 @@ public class WindowWatcherActivity extends AppCompatActivity {
                 MainActivity.alarmConfig=Integer.valueOf(GetSensores());
                 Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
-
-
+                Valor_actual = CheckSensores1();
+                cuenta.Update_Jason_Chino1(String.valueOf(cuentas.getId()),Valor_actual);
             }
         });
 
@@ -182,8 +303,8 @@ public class WindowWatcherActivity extends AppCompatActivity {
                 MainActivity.alarmConfig=Integer.valueOf(GetSensores());
                 Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
-
-
+                String valor2 = CheckSensores2();
+                cuenta.Update_Jason_Chino2(String.valueOf(cuentas.getId()),valor2);
             }
         });
 
@@ -224,7 +345,8 @@ public class WindowWatcherActivity extends AppCompatActivity {
                 MainActivity.alarmConfig=Integer.valueOf(GetSensores());
                 Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
-
+                String valor2 = CheckSensores2();
+                cuenta.Update_Jason_Chino2(String.valueOf(cuentas.getId()),valor2);
 
 
             }
@@ -247,7 +369,8 @@ public class WindowWatcherActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
 
-
+                String valor2 = CheckSensores2();
+                cuenta.Update_Jason_Chino2(String.valueOf(cuentas.getId()),valor2);
 
             }
         });
@@ -263,6 +386,7 @@ public class WindowWatcherActivity extends AppCompatActivity {
         if(sw1.isChecked()==true)
         {
             SW1 = Math.pow(2,0);
+
         }
 
         else SW1 = 0;
@@ -313,7 +437,67 @@ public class WindowWatcherActivity extends AppCompatActivity {
     }
 
 
+public String CheckSensores1 ()
+{
+    String aux1 = "000";
+    if (!sw1.isChecked() && !sw2.isChecked() && !sw3.isChecked()) {
+        //asignar a la variable de las puertas: 003
+        aux1 = "000";
+    } else if (!sw1.isChecked() && !sw2.isChecked() && sw3.isChecked()) {
+        //asignar a la variable de las puertas: 002
+        aux1 = "001";
+    } else if (!sw1.isChecked() && sw2.isChecked() && !sw3.isChecked()) {
+        //Asignar a la variable de las puertas: 001
+        aux1 = "010";
+    } else if(!sw1.isChecked() && sw2.isChecked() && sw3.isChecked()){
+        aux1 = "011";
+    }
+    else if (sw1.isChecked() && !sw2.isChecked() && !sw3.isChecked()) {
+        //asignar a la variable de las puertas: 002
+        aux1 = "100";
+    } else if (sw1.isChecked() && !sw2.isChecked() && sw3.isChecked()) {
+        //Asignar a la variable de las puertas: 001
+        aux1 = "101";
+    } else if(sw1.isChecked() && sw2.isChecked() && !sw3.isChecked()){
+        aux1= "110";
+    }
+    else
+    {
+        aux1= "111";
+    }
+    return aux1;
+}
 
+    public String CheckSensores2 ()
+    {
+        String aux1 = "000";
+        if (!sw4.isChecked() && !pir.isChecked() && !alarm.isChecked()) {
+            //asignar a la variable de las puertas: 003
+            aux1 = "000";
+        } else if (!sw4.isChecked() && !pir.isChecked() && alarm.isChecked()) {
+            //asignar a la variable de las puertas: 002
+            aux1 = "001";
+        } else if (!sw4.isChecked() && pir.isChecked() && !alarm.isChecked()) {
+            //Asignar a la variable de las puertas: 001
+            aux1 = "010";
+        } else if(!sw4.isChecked() && pir.isChecked() && alarm.isChecked()){
+            aux1 = "011";
+        }
+        else if (sw4.isChecked() && !pir.isChecked() && !alarm.isChecked()) {
+            //asignar a la variable de las puertas: 002
+            aux1 = "100";
+        } else if (sw4.isChecked() && !pir.isChecked() && alarm.isChecked()) {
+            //Asignar a la variable de las puertas: 001
+            aux1 = "101";
+        } else if(sw4.isChecked() && pir.isChecked() && !alarm.isChecked()){
+            aux1= "110";
+        }
+        else
+        {
+            aux1= "111";
+        }
+        return aux1;
+    }
 
 
 

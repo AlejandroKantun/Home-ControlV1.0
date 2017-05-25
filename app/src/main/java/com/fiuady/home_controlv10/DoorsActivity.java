@@ -1,6 +1,7 @@
 package com.fiuady.home_controlv10;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class DoorsActivity extends AppCompatActivity {
-
+    public static final String Account_ID2 = "com.fiuady.home_controlv10.Account_ID2";
     public void SendMessage(String toSend) {
         try {
             if ((MainActivity.connectedSocket != null) && (MainActivity.connectedSocket.isConnected())) {
@@ -55,27 +56,42 @@ public class DoorsActivity extends AppCompatActivity {
         frontDoorSwitch = (Switch) findViewById(R.id.frontdoor_switch);
         garageDoorSwitch = (Switch) findViewById(R.id.garage_switch);
         loginButton = (ImageButton) findViewById(R.id.ImgBtn_doorsLogin);
+        Intent intent = getIntent();
+        /*final String */String ID = intent.getStringExtra(Account_ID2);
+
         //garageDoorSwitch.setChecked(MainActivity.garageDoorState);
         //frontDoorSwitch.setChecked(MainActivity.frontDoorState);
-        Account cuenta = new Account(getApplicationContext());
+        final Account cuenta = new Account(getApplicationContext());
         final Cuentas cuentas = cuenta.getAccountbyid(MainActivity.getSelectedID());
+       // final Cuentas cuentas = cuenta.getAccountbyid(ID);
 
+        //Toast.makeText(getApplicationContext(), cuentas.getJson10(), Toast.LENGTH_SHORT).show();
+        String aux = cuentas.getJson10();
 
+       if(cuentas.getJson10() == null)
+       {
+          aux = "000";
+       }
 
-        cuenta.Update_JSON_Reyes(String.valueOf(cuentas.getId()),doorsVariable);
-        if (MainActivity.doorSelection.equals("003")) {
+        if (aux.equals("003")) {
             garageDoorSwitch.setChecked(true);
             frontDoorSwitch.setChecked(true);
-        } else if (MainActivity.doorSelection.equals("002")) {
+        } else if (aux.equals("002")) {
             garageDoorSwitch.setChecked(false);
             frontDoorSwitch.setChecked(true);
-        } else if (MainActivity.doorSelection.equals("001")) {
+        } else if (aux.equals("001")) {
             garageDoorSwitch.setChecked(true);
+            frontDoorSwitch.setChecked(false);
+        }
+          else
+        {
+            garageDoorSwitch.setChecked(false);
             frontDoorSwitch.setChecked(false);
         }
 
         garageDoorSwitch.setEnabled(false);
         frontDoorSwitch.setEnabled(false);
+
         Toast.makeText(getApplicationContext(),cuentas.getUser(),Toast.LENGTH_SHORT).show();
         garageDoorSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +109,12 @@ public class DoorsActivity extends AppCompatActivity {
                     doorsVariable = "000";
                 }
 
-                Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
-                MainActivity.doorSelection = doorsVariable;
-                Toast.makeText(getApplicationContext(), MainActivity.getJSONString(), Toast.LENGTH_SHORT).show();
+                cuenta.Update_JSON_Reyes(String.valueOf(cuentas.getId()),doorsVariable);
+               // Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
+             //   MainActivity.doorSelection = doorsVariable;
+               // Toast.makeText(getApplicationContext(), MainActivity.getJSONString(), Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
+                //Toast.makeText(getApplicationContext(), cuentas.getUser(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -115,11 +133,12 @@ public class DoorsActivity extends AppCompatActivity {
                 } else {
                     doorsVariable = "000";
                 }
-                Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
-                MainActivity.doorSelection = doorsVariable;
-                Toast.makeText(getApplicationContext(), MainActivity.getJSONString(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
+                cuenta.Update_JSON_Reyes(String.valueOf(cuentas.getId()),doorsVariable);
+              //  MainActivity.doorSelection = doorsVariable;
+                //Toast.makeText(getApplicationContext(), MainActivity.getJSONString(), Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
-
+               // Toast.makeText(getApplicationContext(), cuentas.getUser(), Toast.LENGTH_SHORT).show();
             }
         });
 

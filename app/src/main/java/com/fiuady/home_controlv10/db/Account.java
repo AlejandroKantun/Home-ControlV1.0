@@ -186,12 +186,27 @@ public final class Account {
         );
     }
 
-    public void Update_Jason_Chino(String id , String json8, String json9) {
+    public void Update_Jason_Chino1(String id , String json8) {
 
         ContentValues values = new ContentValues();
 
         //values.put(ProductTable.Columns.QUANTITY, qty);
         values.put(AccountDbSchema.AccountTable.Columns.JSON8, json8);
+
+
+        db.update(AccountDbSchema.AccountTable.Name,
+                values,
+                AccountDbSchema.AccountTable.Columns.ID + "= ?",
+                new String[]{id}
+        );
+    }
+
+    public void Update_Jason_Chino2(String id , String json9) {
+
+        ContentValues values = new ContentValues();
+
+        //values.put(ProductTable.Columns.QUANTITY, qty);
+
         values.put(AccountDbSchema.AccountTable.Columns.JSON9, json9);
 
         db.update(AccountDbSchema.AccountTable.Name,
@@ -200,6 +215,8 @@ public final class Account {
                 new String[]{id}
         );
     }
+
+
 
     public void Update_Jason_Madera(String id ,  String json11, String json12, String json13, String json14) {
 
