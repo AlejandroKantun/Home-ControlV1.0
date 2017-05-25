@@ -60,6 +60,9 @@ public class DoorsActivity extends AppCompatActivity {
         Account cuenta = new Account(getApplicationContext());
         final Cuentas cuentas = cuenta.getAccountbyid(MainActivity.getSelectedID());
 
+
+
+        cuenta.Update_JSON_Reyes(String.valueOf(cuentas.getId()),doorsVariable);
         if (MainActivity.doorSelection.equals("003")) {
             garageDoorSwitch.setChecked(true);
             frontDoorSwitch.setChecked(true);
