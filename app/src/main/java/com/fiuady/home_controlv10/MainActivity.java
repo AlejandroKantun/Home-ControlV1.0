@@ -8,6 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +18,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -282,33 +288,46 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 private BluetoothAdapter btAdapter;
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
+    private String User; //name
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        UserName = (TextView) findViewById(R.id.Txt_NameUser);
+       // UserName = (TextView) findViewById(R.id.Txt_NameUser);
         Intent intent = getIntent();
         /*final String */ID = intent.getStringExtra(Account_ID);
-        String User = intent.getStringExtra(Account_UserName);
+         User = intent.getStringExtra(Account_UserName);
         String aux = intent.getStringExtra(Account_aux);
-        UserName.setText(User);
+        //UserName.setText(User);
+        toolbar = (Toolbar)findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Home Control");
 
 
         account = new Account(getApplicationContext());
         final Cuentas cuentas = account.getAccountbyid(ID);
 
-        doorSelection = String.valueOf(cuentas.getJson10());
-        PWMR1=Integer.valueOf(cuentas.getJson1());
-        PWMG1=Integer.valueOf(cuentas.getJson2());
-        PWMB1=Integer.valueOf(cuentas.getJson3());
-        PWMR2=Integer.valueOf(cuentas.getJson4());
-        PWMG2=Integer.valueOf(cuentas.getJson5());
-        PWMB2=Integer.valueOf(cuentas.getJson6());
-        stateRGB=Integer.valueOf(cuentas.getJson7());
+if(cuentas.getJson1()!= null && cuentas.getJson2()!= null && cuentas.getJson3()!=null && cuentas.getJson4()!= null && cuentas.getJson5()!= null && cuentas.getJson6()!=null && cuentas.getJson7()!= null && cuentas.getJson10()!=null)
+
+{
+    doorSelection = String.valueOf(cuentas.getJson10());
+    PWMR1=Integer.valueOf(cuentas.getJson1());
+    PWMG1=Integer.valueOf(cuentas.getJson2());
+    PWMB1=Integer.valueOf(cuentas.getJson3());
+    PWMR2=Integer.valueOf(cuentas.getJson4());
+    PWMG2=Integer.valueOf(cuentas.getJson5());
+    PWMB2=Integer.valueOf(cuentas.getJson6());
+    stateRGB=Integer.valueOf(cuentas.getJson7());
+}
+
 
 
         btAdapter = BluetoothAdapter.getDefaultAdapter();
-        Img_btn_BT = (ImageButton)findViewById(R.id.ImgBtn_BTSetting);
+       /* Img_btn_BT = (ImageButton)findViewById(R.id.ImgBtn_BTSetting);
         Img_btn_Account_settings = (ImageButton)findViewById(R.id.ImgBtn_AccountSettings);
         Img_btn_Alarm = (ImageButton)findViewById(R.id.ImgBtn_Alarm);
         Img_btn_Alarm.setOnClickListener(new View.OnClickListener() {
@@ -324,7 +343,7 @@ private BluetoothAdapter btAdapter;
                 startActivity(i);
 
             }
-        });
+        });*/
         PlacesRV=(RecyclerView)findViewById(R.id.RV_places);
         int display_mode = getResources().getConfiguration().orientation;
         if (display_mode == Configuration.ORIENTATION_PORTRAIT) {
@@ -343,7 +362,7 @@ private BluetoothAdapter btAdapter;
         placesAdapter = new PlacesAdapter(Aux_places);
         PlacesRV.setAdapter(placesAdapter);
 
-        Img_btn_BT.setOnClickListener(new View.OnClickListener() {
+        /*Img_btn_BT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DisconectSocket();
@@ -355,147 +374,129 @@ private BluetoothAdapter btAdapter;
             @Override
             public void onClick(View v) {
 
-                final PopupMenu popupMenu = new PopupMenu(MainActivity.this, Img_btn_Account_settings);
-                popupMenu.getMenuInflater().inflate(R.menu.pop_menu_account, popupMenu.getMenu());
-                popupMenu.getMenu().clear();
-                popupMenu.getMenu().add("Agregar cuenta");
-                popupMenu.getMenu().add("Modificar cuenta");
-                popupMenu.getMenu().add("Eliminar cuenta");
-                popupMenu.getMenu().add("Log out");
+
+            }
+        });*/
+        navigationView = (NavigationView)findViewById(R.id.navigation_view);
 
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (item.getTitle().equals("Agregar cuenta") )
+            // This method will trigger on item Click of navigation menu
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if(menuItem.isChecked()) menuItem.setChecked(false);
+                else menuItem.setChecked(true);
+                drawerLayout.closeDrawers();
+                switch (menuItem.getItemId()){
+
+
+                    //Replacing the main content with ContentFragment Which is our Inbox View;
+                    case R.id.doors:
+                       /* Toast.makeText(getApplicationContext(),"Inbox Selected",Toast.LENGTH_SHORT).show();
+                        ContentFragment fragment = new ContentFragment();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.frame,fragment);
+                        fragmentTransaction.commit();*/
+                        Toast.makeText(getApplicationContext(),"Doors",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, DoorsActivity.class);
+                        startActivity(intent);
+                        return true;
+
+                    // For rest of the options we just show a toast on click
+
+                    case R.id.alarms:
+                        Toast.makeText(getApplicationContext(),"Alarms",Toast.LENGTH_SHORT).show();
+                        if (device_name.length()>0)
                         {
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-                           // builder1.setTitle("Modificar producto existente");
-                            View product_view = getLayoutInflater().inflate(R.layout.add_account, null);
-
-                            final EditText Username = (EditText) product_view.findViewById(R.id.EditText_UserName);
-                            final EditText Email = (EditText) product_view.findViewById(R.id.EditEmail);
-                            final EditText Password = (EditText) product_view.findViewById(R.id.EditPassword);
-                            final EditText Pin= (EditText) product_view.findViewById(R.id.EditPin);
-
-
-
-                            builder1.setPositiveButton("Crear", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int whichButton) {
-
-                                    if(!Username.getText().toString().isEmpty() && !Email.getText().toString().isEmpty() && !Password.getText().toString().isEmpty() && !Pin.getText().toString().isEmpty())
-                                    {
-                                           account.CreateNonAdminAccount(Username.getText().toString(), Email.getText().toString(), Password.getText().toString(), Pin.getText().toString());
-                                        Toast.makeText(MainActivity.this,"Cuenta creada"
-                                              , Toast.LENGTH_SHORT).show();
-
-                                    }
-
-                                    else
-                                    {
-
-
-                                        Toast.makeText(MainActivity.this,"Operación no exitosa. "+
-                                                "Debe llenar todos los campos ", Toast.LENGTH_SHORT).show();
-                                    }
-
-
-                                }
-                            });
-                            builder1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-
-                            // builder.show();
-                            builder1.setView(product_view);
-
-                            //  builder.setView(product_layout);
-                            builder1.show();
-
+                            getDevicetoConnect(device_name);
+                            connectdevice();
                         }
-                        else if(item.getTitle().equals("Modificar cuenta"))
-                        {
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-                            // builder1.setTitle("Modificar producto existente");
-                            View product_view = getLayoutInflater().inflate(R.layout.modify_account, null);
-
-                            final EditText Username = (EditText) product_view.findViewById(R.id.EditText_UserName);
-                          //  final EditText Email = (EditText) product_view.findViewById(R.id.EditEmail);
-                            final EditText Password = (EditText) product_view.findViewById(R.id.EditPassword);
-                            final EditText Pin= (EditText) product_view.findViewById(R.id.EditPin);
-                             final String Id = String.valueOf(cuentas.getId());
-
-
-                            builder1.setPositiveButton("Modificar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int whichButton) {
-
-                                    if(!Username.getText().toString().isEmpty()  && !Password.getText().toString().isEmpty() && !Pin.getText().toString().isEmpty())
-                                    {
-                                        account.modify_account( Id ,Username.getText().toString(), Password.getText().toString(), Pin.getText().toString());
-                                        Toast.makeText(MainActivity.this,"Cuenta modificada"
-                                                , Toast.LENGTH_SHORT).show();
-                                        UserName.setText(Username.getText().toString());
-
-                                    }
-
-                                    else
-                                    {
+                        Intent i = new Intent(MainActivity.this, WindowWatcherActivity.class);
+                        startActivity(i);
+                        return true;
+                    case R.id.Modify_activeAccount:
+                        Toast.makeText(getApplicationContext(),"Modify",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.Delete_activeAccount:
+                        Toast.makeText(getApplicationContext(),"Deleter",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.LogOut_activeAccount:
+                        Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                        return true;
 
 
-                                        Toast.makeText(MainActivity.this,"Operación no exitosa. "+
-                                                "Debe llenar todos los campos ", Toast.LENGTH_SHORT).show();
-                                    }
-
-
-                                }
-                            });
-                            builder1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-
-                            // builder.show();
-                            builder1.setView(product_view);
-
-                            //  builder.setView(product_layout);
-                            builder1.show();
-
-                        }
-                        else if(item.getTitle().equals("Eliminar cuenta"))
-                        {
-
-                           // for (Cuentas c : account.Getallaccounts())
-                           // {
-                             //   Toast.makeText(MainActivity.this, c.getUser(), Toast.LENGTH_SHORT).show();
-                          //  }
-
-                        }
-                        else
-                        {
-                            finish();
-                           // Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                           // startActivityForResult(i);
-                        }
-                        return false;
-                    }
-                });
-
-                popupMenu.show();
+                }
             }
         });
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.openDrawer, R.string.closeDrawer){
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+                TextView userName = (TextView)findViewById(R.id.username);
+                TextView userEmail = (TextView)findViewById(R.id.email);
+
+                userName.setText(User);
+                Cuentas cuenta = account.getAccountbyid(ID);
+                userEmail.setText(cuenta.getMail());
+
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.option_AccountsManager:
+                Intent intent = new Intent(MainActivity.this,ManageUsersActivity.class);
+                startActivity(intent);
+                break;
 
+            case R.id.option_BluetoothManager:
+                DisconectSocket();
+                Intent i = new Intent(MainActivity.this, bt_set.class);
+                startActivityForResult(i,2);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //MenuInflater menuInflater = getMenuInflater();
+        Cuentas cuentas = account.getAccountbyid(ID);
+        if(cuentas.getType() == 1) {
+            MenuInflater menuInflater = getMenuInflater();
+            menuInflater.inflate(R.menu.main_menu,menu);
+        }
+        else
+        {   MenuInflater menuInflater2 = getMenuInflater();
+            menuInflater2.inflate(R.menu.main_menu2,menu);
+
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
 
     public boolean getDevicetoConnect(String name)
     {

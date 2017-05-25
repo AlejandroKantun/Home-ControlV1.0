@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/doors"
+            android:checked="false"
+            android:icon="@drawable/ic_doors"
+            android:title="@string/doors_string" />
+        <item
+            android:id="@+id/alarms"
+            android:checked="false"
+            android:icon="@drawable/ic_alarm"
+            android:title="@string/alarm_string" />
+        <item
+            android:id="@+id/Delete_activeAccount"
+            android:checked="false"
+            android:icon="@drawable/ic_removeaccount"
+            android:title="@string/deleteAccount" />
+        <item
+            android:id="@+id/Modify_activeAccount"
+            android:checked="false"
+            android:icon="@drawable/ic_modifyaccount"
+            android:title="@string/modifyAccount" />
+        <item
+            android:id="@+id/LogOut_activeAccount"
+            android:checked="false"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logoutAccount" />
+    </group>
+</menu>

@@ -32,7 +32,9 @@
         <activity android:name=".DoorsActivity" android:screenOrientation="portrait"/>
         <activity android:name=".WindowWatcherActivity" android:screenOrientation="portrait"/>
         <activity android:name=".Terrace" android:screenOrientation="portrait"/>
-        <activity android:name=".room2" android:screenOrientation="portrait"> </activity>
+        <activity android:name=".room2" android:screenOrientation="portrait"/>
+        <activity android:name=".ManageUsersActivity" android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

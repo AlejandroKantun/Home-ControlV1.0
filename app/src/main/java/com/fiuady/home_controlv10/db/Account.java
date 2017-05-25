@@ -250,6 +250,22 @@ public final class Account {
         cursor.close();
         return list;
     }
+    public boolean check_email(String email) {
+        Cursor cursor = db.rawQuery("SELECT id from cuenta GROUP BY id HAVING e_mail = '" + email + "';", new String[]{});
+        if (cursor == null) {
+
+            return true;
+        } else if (!cursor.moveToFirst()) {
+
+            cursor.close();
+            return true;
+
+        } else {
+            cursor.close();
+            return false;
+        }
+    }
+
 
 
 
