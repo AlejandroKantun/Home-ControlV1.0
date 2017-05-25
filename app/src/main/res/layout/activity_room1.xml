@@ -82,7 +82,8 @@
         android:textSize="18sp"
         tools:text="100.37 °C"
         android:layout_gravity="center"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:editable="false"/>
 
     <TextView
         android:id="@+id/txv_vent1_title"
@@ -177,10 +178,4 @@
         </NumberPicker>
     </LinearLayout>
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-</LinearLayout>
+    </LinearLayout>

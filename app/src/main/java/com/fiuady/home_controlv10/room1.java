@@ -27,6 +27,8 @@ public class room1 extends AppCompatActivity {
     final static String KEY_INT_TEMP1MIN = "key_intTemp1Min";
     final static String KEY_INT_TEMP1MAX = "key_intTemp1Max";
 
+
+
     /*Ventilador y sensor de temperatura*/
     private EditText edtTemp1Actual;
     private Switch swTemp1Auto;
@@ -42,8 +44,28 @@ public class room1 extends AppCompatActivity {
     /*Ventilador y sensor de temperatura*/
     public Boolean boolTemp1Auto = false;
     public Boolean boolTemp1OnOff = false;
-    public int intTemp1Min = 0;
+    private int intTemp1Min = 0;
+    public char byteTemp1Min = 0;
     public int intTemp1Max = 0;
+    public char byteTemp1Max = 0;
+
+
+    //Devices
+    final char LAMP1 = '1';
+    final char LAMP2 = '2';
+    final char VENT1 = '3';
+    final char VENT2 = '4';
+
+    //Comandos
+    final char OFF = '1';
+    final char ON = '2';
+    final char AUTO = '3';
+    final char RANGE = '4';
+    final char ACT = '5';
+    final char DES = '6';
+    final char PWM = '7';
+
+
     /*Ventilador y sensor de temperatura*/
 
     @Override
@@ -61,6 +83,15 @@ public class room1 extends AppCompatActivity {
         nupTemp1RangeMin = (NumberPicker)findViewById(R.id.nup_temp1_min);
         nupTemp1RangeMax = (NumberPicker)findViewById(R.id.nup_temp1_max);
 
+        nupTemp1RangeMax.setMaxValue(125);
+        nupTemp1RangeMin.setMaxValue(124);
+        nupTemp1RangeMax.setMinValue(1);
+        nupTemp1RangeMin.setMinValue(0);
+        nupTemp1RangeMax.setEnabled(false);
+        nupTemp1RangeMin.setEnabled(false);
+
+
+
         swTemp1Auto.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -70,14 +101,26 @@ public class room1 extends AppCompatActivity {
                     swTemp1OnOff.setEnabled(false);
                     nupTemp1RangeMin.setEnabled(true);
                     nupTemp1RangeMax.setEnabled(true);
-                    Toast.makeText(getApplicationContext(),"VENT1 AUTO ACT",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"VENT1 AUTO ACT",Toast.LENGTH_SHORT).show();
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(AUTO);
+                    MainActivity.value2 = String.valueOf(ACT);
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1 + "," + MainActivity.value2,Toast.LENGTH_SHORT).show();
+                    //Enviar el JSON al PSoC
+
+
                 }
 
                 else{
                     swTemp1OnOff.setEnabled(true);
                     nupTemp1RangeMin.setEnabled(false);
                     nupTemp1RangeMax.setEnabled(false);
-                    Toast.makeText(getApplicationContext(),"VENT1 AUTO DES",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"VENT1 AUTO DES",Toast.LENGTH_SHORT).show();
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(AUTO);
+                    MainActivity.value2 = String.valueOf(DES);
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1 + "," + MainActivity.value2,Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -88,10 +131,17 @@ public class room1 extends AppCompatActivity {
                 boolTemp1OnOff = swTemp1OnOff.isChecked();
 
                 if(boolTemp1OnOff){
-                    Toast.makeText(getApplicationContext(),"VENT1 ON",Toast.LENGTH_SHORT).show();
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(ON);
+                    //Toast.makeText(getApplicationContext(),"VENT1 ON",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1,Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"VENT1 OFF",Toast.LENGTH_SHORT).show();
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(OFF);
+                    //Toast.makeText(getApplicationContext(),"VENT1 OFF",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1,Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -103,10 +153,33 @@ public class room1 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Esta Temp debe ser mayor",Toast.LENGTH_SHORT).show();
                     intTemp1Max = nupTemp1RangeMin.getValue() + 1;
                     nupTemp1RangeMax.setValue(intTemp1Max);
+
+                    byteTemp1Max = (char) (intTemp1Max + 100);
+
+                    intTemp1Min = nupTemp1RangeMin.getValue();
+                    byteTemp1Min = (char) (intTemp1Min + 100);
+
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(RANGE);
+                    MainActivity.value2 = String.valueOf(byteTemp1Min);
+                    MainActivity.value3 = String.valueOf(byteTemp1Max);
+
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1 + ","+ MainActivity.value2 + ","+ MainActivity.value3,Toast.LENGTH_SHORT).show();
                 }
                 else {
                     intTemp1Max = nupTemp1RangeMax.getValue();
-                    Toast.makeText(getApplicationContext(),"VENT1 RANGE " + intTemp1Min + " " + intTemp1Max,Toast.LENGTH_SHORT).show();
+                    byteTemp1Max =(char)(intTemp1Max+ 100);
+
+                    intTemp1Min = nupTemp1RangeMin.getValue();
+                    byteTemp1Min = (char) (intTemp1Min + 100);
+
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(RANGE);
+                    MainActivity.value2 = String.valueOf(byteTemp1Min);
+                    MainActivity.value3 = String.valueOf(byteTemp1Max);
+
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1 + ","+ MainActivity.value2 + ","+ MainActivity.value3,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"VENT1 RANGE Min: " + byteTemp1Min + " Max:" + String.valueOf((int)byteTemp1Max) ,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -118,11 +191,33 @@ public class room1 extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Esta Temp debe ser menor",Toast.LENGTH_SHORT).show();
                     intTemp1Min = nupTemp1RangeMax.getValue() - 1;
                     nupTemp1RangeMin.setValue(intTemp1Min);
+
+                    byteTemp1Min = (char) (intTemp1Min + 100);
+
+                    intTemp1Max = nupTemp1RangeMax.getValue();
+                    byteTemp1Max =(char)(intTemp1Max+ 100);
+
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(RANGE);
+                    MainActivity.value2 = String.valueOf(byteTemp1Min);
+                    MainActivity.value3 = String.valueOf(byteTemp1Max);
+
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1 + ","+ MainActivity.value2 + ","+ MainActivity.value3,Toast.LENGTH_SHORT).show();
+
                 }
 
                 else{
+                    intTemp1Max = nupTemp1RangeMax.getValue();
+                    byteTemp1Max =(char)(intTemp1Max+ 100);
                     intTemp1Min = nupTemp1RangeMin.getValue();
-                    Toast.makeText(getApplicationContext(),"VENT1 RANGE " + intTemp1Min + " " + intTemp1Max,Toast.LENGTH_SHORT).show();
+                    byteTemp1Min = (char) (intTemp1Min + 100);
+                    //Toast.makeText(getApplicationContext(),"VENT1 RANGE " + intTemp1Min + " " + intTemp1Max,Toast.LENGTH_SHORT).show();
+                    MainActivity.command = String.valueOf(VENT1);
+                    MainActivity.value1 = String.valueOf(RANGE);
+                    MainActivity.value2 = String.valueOf(byteTemp1Min);
+                    MainActivity.value3 = String.valueOf(byteTemp1Max);
+
+                    Toast.makeText(getApplicationContext(), MainActivity.command + ","+ MainActivity.value1 + ","+ MainActivity.value2 + ","+ MainActivity.value3,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -168,6 +263,7 @@ public class room1 extends AppCompatActivity {
                         MainActivity.PWMG1 = (Integer.parseInt(RGB_PWM2,16));
                         MainActivity.PWMB1 = (Integer.parseInt(RGB_PWM2,16));
                         MainActivity.stateRGB = 1;
+
                         //Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
 
                         SendMessage(MainActivity.getJSONString());
