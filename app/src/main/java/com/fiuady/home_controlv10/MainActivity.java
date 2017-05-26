@@ -311,6 +311,7 @@ private BluetoothAdapter btAdapter;
         account = new Account(getApplicationContext());
         final Cuentas cuentas = account.getAccountbyid(ID);
 
+
 if(cuentas.getJson1()!= null && cuentas.getJson2()!= null && cuentas.getJson3()!=null && cuentas.getJson4()!= null && cuentas.getJson5()!= null && cuentas.getJson6()!=null && cuentas.getJson7()!= null && cuentas.getJson10()!=null)
 
 {
@@ -322,6 +323,7 @@ if(cuentas.getJson1()!= null && cuentas.getJson2()!= null && cuentas.getJson3()!
     PWMG2=Integer.valueOf(cuentas.getJson5());
     PWMB2=Integer.valueOf(cuentas.getJson6());
     stateRGB=Integer.valueOf(cuentas.getJson7());
+    //SendMessage(getJSONString());
 }
 
 
@@ -464,6 +466,34 @@ if(cuentas.getJson1()!= null && cuentas.getJson2()!= null && cuentas.getJson3()!
 
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+
+        if (cuentas.getExtra1()!= null)
+        {
+            color_background1 = Integer.valueOf(cuentas.getExtra1());
+            PWMR1 = Integer.valueOf(cuentas.getJson1());
+            PWMG1 = Integer.valueOf(cuentas.getJson2());
+            PWMB1 = Integer.valueOf(cuentas.getJson3());
+            stateRGB = Integer.valueOf(cuentas.getJson7());
+        }
+        if (cuentas.getExtra2()!= null)
+        {
+            color_background2 = Integer.valueOf(cuentas.getExtra2());
+            PWMR2 = Integer.valueOf(cuentas.getJson4());
+            PWMG2 = Integer.valueOf(cuentas.getJson5());
+            PWMB2 = Integer.valueOf(cuentas.getJson6());
+            stateRGB = Integer.valueOf(cuentas.getJson7());
+        }
+        else {
+            PWMR1=255;
+            PWMG1=255;
+            PWMB1=255;
+            PWMR2=255;
+            PWMG2=255;
+            PWMB2=255;
+            stateRGB=0;
+            color_background1 =0;
+            color_background2=0;
+        }
 
     }
     @Override

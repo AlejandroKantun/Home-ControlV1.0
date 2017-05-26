@@ -110,8 +110,8 @@ public class DoorsActivity extends AppCompatActivity {
                 }
 
                 cuenta.Update_JSON_Reyes(String.valueOf(cuentas.getId()),doorsVariable);
-               // Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
-             //   MainActivity.doorSelection = doorsVariable;
+               Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
+             MainActivity.doorSelection = doorsVariable;
                // Toast.makeText(getApplicationContext(), MainActivity.getJSONString(), Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
                 //Toast.makeText(getApplicationContext(), cuentas.getUser(), Toast.LENGTH_SHORT).show();
@@ -133,9 +133,9 @@ public class DoorsActivity extends AppCompatActivity {
                 } else {
                     doorsVariable = "000";
                 }
-               // Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
+               Toast.makeText(getApplicationContext(), doorsVariable, Toast.LENGTH_SHORT).show();
                 cuenta.Update_JSON_Reyes(String.valueOf(cuentas.getId()),doorsVariable);
-              //  MainActivity.doorSelection = doorsVariable;
+                MainActivity.doorSelection = doorsVariable;
                 //Toast.makeText(getApplicationContext(), MainActivity.getJSONString(), Toast.LENGTH_SHORT).show();
                 SendMessage(MainActivity.getJSONString());
                // Toast.makeText(getApplicationContext(), cuentas.getUser(), Toast.LENGTH_SHORT).show();

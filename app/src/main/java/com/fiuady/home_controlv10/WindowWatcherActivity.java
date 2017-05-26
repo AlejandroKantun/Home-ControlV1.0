@@ -44,12 +44,6 @@ public class WindowWatcherActivity extends AppCompatActivity {
 
     String Valor_actual;
 
-
-
-
-
-
-
     byte Sensores = 0;
     double SW1,SW2,SW3,SW4,SW5,PIR,ALARM;
 

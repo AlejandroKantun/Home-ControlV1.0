@@ -12,6 +12,8 @@ import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.fiuady.home_controlv10.db.Account;
+import com.fiuady.home_controlv10.db.Cuentas;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorChangedListener;
 
@@ -82,6 +84,8 @@ public class room1 extends AppCompatActivity {
         swTemp1OnOff = (Switch)findViewById(R.id.swt_vent1_on_off);
         nupTemp1RangeMin = (NumberPicker)findViewById(R.id.nup_temp1_min);
         nupTemp1RangeMax = (NumberPicker)findViewById(R.id.nup_temp1_max);
+        final Account cuenta = new Account(getApplicationContext());
+        final Cuentas cuentas = cuenta.getAccountbyid(MainActivity.getSelectedID());
 
         nupTemp1RangeMax.setMaxValue(125);
         nupTemp1RangeMin.setMaxValue(124);
@@ -259,11 +263,13 @@ public class room1 extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(),"#"+RGB_PWM1+RGB_PWM2+RGB_PWM3,Toast.LENGTH_SHORT).show();
 
                         Img_Btn_ledOn1.setBackgroundColor(MainActivity.color_background1);
+                       // MainActivity.color_background1:
                         MainActivity.PWMR1 = (Integer.parseInt(RGB_PWM1,16));
                         MainActivity.PWMG1 = (Integer.parseInt(RGB_PWM2,16));
                         MainActivity.PWMB1 = (Integer.parseInt(RGB_PWM2,16));
                         MainActivity.stateRGB = 1;
-
+                        cuenta.Update_Jason_Frodo(String.valueOf(cuentas.getId()),String.valueOf(MainActivity.PWMR1),String.valueOf(MainActivity.PWMG1),String.valueOf(MainActivity.PWMB1),String.valueOf(MainActivity.PWMR2),String.valueOf(MainActivity.PWMG2),String.valueOf(MainActivity.PWMB2),String.valueOf(MainActivity.stateRGB));
+                        cuenta.Update_Extras_Frodo(String.valueOf(cuentas.getId()),String.valueOf(MainActivity.color_background1),String.valueOf(MainActivity.color_background2));
                         //Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
 
                         SendMessage(MainActivity.getJSONString());

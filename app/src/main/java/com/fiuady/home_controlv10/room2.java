@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.fiuady.home_controlv10.db.Account;
+import com.fiuady.home_controlv10.db.Cuentas;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorChangedListener;
 
@@ -29,8 +31,8 @@ public class room2 extends AppCompatActivity {
         setContentView(R.layout.activity_room2);
         Img_Btn_ledOn2= (ImageButton)findViewById(R.id.Img_btn_LEDON2);
         Img_Btn_ledOn2.setBackgroundColor(MainActivity.color_background2);
-
-
+        final Account cuenta = new Account(getApplicationContext());
+        final Cuentas cuentas = cuenta.getAccountbyid(MainActivity.getSelectedID());
 
         Img_Btn_ledOn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +70,9 @@ public class room2 extends AppCompatActivity {
                         MainActivity.PWMG2 = (Integer.parseInt(RGB_PWM2,16));
                         MainActivity.PWMB2 = (Integer.parseInt(RGB_PWM2,16));
                         MainActivity.stateRGB = 2;
+
+                        cuenta.Update_Jason_Frodo(String.valueOf(cuentas.getId()),String.valueOf(MainActivity.PWMR1),String.valueOf(MainActivity.PWMG1),String.valueOf(MainActivity.PWMB1),String.valueOf(MainActivity.PWMR2),String.valueOf(MainActivity.PWMG2),String.valueOf(MainActivity.PWMB2),String.valueOf(MainActivity.stateRGB));
+                        cuenta.Update_Extras_Frodo(String.valueOf(cuentas.getId()),String.valueOf(MainActivity.color_background1),String.valueOf(MainActivity.color_background2));
                         //Toast.makeText(getApplicationContext(),MainActivity.getJSONString(),Toast.LENGTH_SHORT).show();
 
                         SendMessage(MainActivity.getJSONString());
